@@ -13,6 +13,13 @@ app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 20
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
+app.get("/api/", function (req, res) {
+  const d = new Date();
+  return res.json({
+    'unix': d.getTime(),
+    'utc': d.toUTCString()
+  });
+})
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/api/:date", function (req, res) {
   res.status(200);
